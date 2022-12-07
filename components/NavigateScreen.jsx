@@ -4,18 +4,20 @@ import tw from 'twrnc';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAPS_APIKEY } from '@env';
 import { useDispatch } from 'react-redux';
-import { setDestination } from '../slices/navSlice';
+import { selectGreeting, setDestination } from '../slices/navSlice';
 import { useNavigation } from '@react-navigation/native';
 import FavoriteOption from './FavoriteOption';
 import { Icon } from 'react-native-elements';
+import { useSelector } from 'react-redux';
 
 const NavigateScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigation();
+  const greeting = useSelector(selectGreeting);
 
   return (
     <SafeAreaView style={tw`bg-white flex-1`}>
-      <Text style={tw`text-center py-5 text-xl`}>Good morning, mate</Text>
+      <Text style={tw`text-center py-5 text-xl`}>{greeting}, mate</Text>
       <View style={tw`border-t border-gray-200 flex-shrink`}>
         <View extraScrollHeight={75}>
           <GooglePlacesAutocomplete

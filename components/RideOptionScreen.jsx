@@ -4,12 +4,26 @@ import tw from 'twrnc';
 import { Icon } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
-import { selectTravelTime } from '../slices/navSlice';
+import { selectTravelTime, selectDestination, selectOrigin } from '../slices/navSlice';
 
 const RideOptionScreen = () => {
   const navigate = useNavigation();
   const [selected, setSelected] = React.useState(null);
   const travelTimeInfo = useSelector(selectTravelTime);
+  const origin = useSelector(selectOrigin);
+  const destination = useSelector(selectDestination);
+
+  const xWaitingTime = React.useMemo(() => {
+    return Math.floor(Math.random() * (11 - 2 + 1)) + 2;
+  }, [origin]);
+
+  const xlWaitingTime = React.useMemo(() => {
+    return Math.floor(Math.random() * (11 - 2 + 1)) + 2;
+  }, [origin]);
+
+  const luxWaitingTime = React.useMemo(() => {
+    return Math.floor(Math.random() * (11 - 2 + 1)) + 2;
+  }, [origin]);
 
   const data = [
     {
@@ -17,18 +31,21 @@ const RideOptionScreen = () => {
       title: 'UberX',
       multiplier: 1,
       image: 'https://links.papareact.com/3pn',
+      waitingTime: xWaitingTime,
     },
     {
       id: 'Uber-XL',
       title: 'Uber XL',
       multiplier: 1.2,
       image: 'https://links.papareact.com/5w8',
+      waitingTime: xlWaitingTime,
     },
     {
       id: 'Uber-LUX',
       title: 'Uber LUX',
       multiplier: 1.75,
       image: 'https://links.papareact.com/7pf',
+      waitingTime: luxWaitingTime,
     },
   ];
 
@@ -50,7 +67,7 @@ const RideOptionScreen = () => {
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
-        renderItem={({ item: { title, image, multiplier }, item }) => {
+        renderItem={({ item: { title, image, multiplier, waitingTime }, item }) => {
           return (
             <TouchableOpacity
               style={tw`flex-row justify-between items-center px-10 ${title === selected?.title ? 'bg-gray-300' : ''}`}
@@ -60,7 +77,7 @@ const RideOptionScreen = () => {
 
               <View>
                 <Text style={tw`text-xl font-semibold`}>{title}</Text>
-                <Text>{travelTimeInfo?.duration?.text} Travel time</Text>
+                <Text>{waitingTime} mins Waiting time</Text>
               </View>
 
               <View>

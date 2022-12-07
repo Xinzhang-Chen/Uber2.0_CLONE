@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { KeyboardAvoidingView, Platform } from 'react-native';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import HomeScreen from './screens/HomeScreen';
 import { store } from './store';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -8,6 +8,7 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MapScreen from './screens/MapScreen';
+import { setGreeting } from './slices/navSlice';
 
 // 1. Setup redux
 
