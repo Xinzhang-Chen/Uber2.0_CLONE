@@ -22,6 +22,7 @@ const FavoriteOption = () => {
   return (
     <FlatList
       data={data}
+      alwaysBounceVertical={false}
       keyExtractor={(item) => item.id}
       ItemSeparatorComponent={() => <View style={[tw`bg-gray-300`, { height: 0.5 }]} />}
       renderItem={({ item }) => (
