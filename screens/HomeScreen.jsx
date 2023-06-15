@@ -10,6 +10,7 @@ import FavoriteOption from '../components/FavoriteOption';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
+
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
       <View style={tw`p-5 `}>
@@ -20,10 +21,13 @@ const HomeScreen = () => {
           }}
         />
         <GooglePlacesAutocomplete
-          styles={{ container: { flex: 0 }, textInput: { fontSize: 18 } }}
+          styles={{
+            container: { flex: 0 },
+            textInput: { fontSize: 18, borderRadius: 15 },
+          }}
           nearbyPlacesAPI="GooglePlacesSearch"
           debounce={400}
-          placeholder="Where From?"
+          placeholder="Where to go?"
           minLength={2}
           enablePoweredByContainer={false}
           onPress={(data, details = null) => {
@@ -42,7 +46,9 @@ const HomeScreen = () => {
             language: 'en',
           }}
         />
+
         <NavOption />
+
         <FavoriteOption style={tw`flex-1`} />
       </View>
     </SafeAreaView>

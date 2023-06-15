@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList } from 'react-native';
 import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements';
@@ -19,6 +19,7 @@ const FavoriteOption = () => {
       destination: 'UNSW, Kingsford',
     },
   ];
+
   return (
     <FlatList
       data={data}
@@ -39,5 +40,3 @@ const FavoriteOption = () => {
 };
 
 export default FavoriteOption;
-
-const styles = StyleSheet.create({});
